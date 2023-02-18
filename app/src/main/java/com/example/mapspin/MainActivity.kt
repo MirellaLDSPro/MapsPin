@@ -37,7 +37,14 @@ class MainActivity : AppCompatActivity() {
         val mapFragment =
             supportFragmentManager.findFragmentById(binding.mapFragment.id) as SupportMapFragment
         mapFragment.getMapAsync { googleMap ->
-            makerPlace(googleMap)
+//            makerPlace(googleMap)
+
+            googleMap.setOnMapClickListener {
+                googleMap.addMarker(
+                    MarkerOptions()
+                        .position(it)
+                )
+            }
 
             googleMap.setOnMapLoadedCallback {
                 val bounds = LatLngBounds.builder()
