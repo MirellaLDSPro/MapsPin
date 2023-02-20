@@ -39,25 +39,40 @@ class MainActivity : AppCompatActivity() {
         mapFragment.getMapAsync { googleMap ->
 //            makerPlace(googleMap)
 
-            googleMap.setOnMapClickListener {
-                googleMap.addMarker(
-                    MarkerOptions()
-                        .position(it)
-                )
-            }
+            createPinWithClick(googleMap)
 
-            googleMap.setOnMapLoadedCallback {
-                val bounds = LatLngBounds.builder()
+            adjustPinView(googleMap)
+        }
+    }
 
-                places.forEach {
-                    bounds.include(it.latLong)
+    private fun createPinWithClick(googleMap: GoogleMap) {
+        googleMap.setOnMapClickListener {
+            googleMap.addMarker(
+                MarkerOptions()
+                    .position(it)
+            )
+        }
+    }
 
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 200))
-                }
+    private fun adjustPinView(googleMap: GoogleMap) {
+        googleMap.setOnMapLoadedCallback {
+            val bounds = LatLngBounds.builder()
+
+            places.forEach {
+                bounds.include(it.latLong)
+
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 200))
             }
         }
     }
 
+    /**
+     *
+     * Marca os lugares no mapa baseando-se no objeto informado
+     *
+     * @param googleMap referência do mapa colocado na tela
+     *
+     */
     private fun makerPlace(googleMap: GoogleMap) {
         places.forEach { place ->
             val maker = googleMap.addMarker(
