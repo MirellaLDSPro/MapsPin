@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val mapFragment =
             supportFragmentManager.findFragmentById(binding.mapFragment.id) as SupportMapFragment
         mapFragment.getMapAsync { googleMap ->
-//            makerPlace(googleMap)
+            makerPlace(googleMap)
 
             createPinWithClick(googleMap)
 
