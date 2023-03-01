@@ -28,8 +28,12 @@ jobs:
         run: chmod +x ./gradlew
       - name: Set up Maps API Key
         run: echo "GOOGLE_MAPS_API_KEY=$GOOGLE_MAPS_API_KEY" >> MAPS_API_KEY
-      - name: Build with Gradle
-        run: ./gradlew build --build-cache --configure-on-demand --no-daemon -Pmaps_api_key=MAPS_API_KEY
+#      - name: Build with Gradle
+#        env:
+#          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
+#        run: ./gradlew build --build-cache --configure-on-demand --no-daemon -Pmaps_api_key=MAPS_API_KEY
       # Step para buildar o projeto e gerar a APK
       - name: Build debug APK
+        env:
+          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
         run: ./gradlew assembleDebug --build-cache --configure-on-demand --no-daemon -Pmaps_api_key=MAPS_API_KEY
