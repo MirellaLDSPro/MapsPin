@@ -23,7 +23,7 @@ jobs:
           java-version: 1.8
       # Step para instalar o NDK
       - name: Install NDK
-        run: echo "y" | ${{ env.ANDROID_HOME }}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
+        run: echo "y" | ${{ ANDROID_HOME }}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
       # Step para buildar o projeto e gerar a APK
       - name: Build debug APK
         run: ./gradlew assembleDebug
