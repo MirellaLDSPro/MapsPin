@@ -37,3 +37,8 @@ jobs:
         env:
           MAPS_API_KEY: ${{ github.event.inputs.mapKey }}
         run: ./gradlew assembleDebug -PmapsApiKey=${{ env.MAPS_API_KEY }}
+      - name: Upload APKs
+        uses: actions/upload-artifact@v2
+        with:
+          name: APKS
+          path: app/build/outputs/apk/
