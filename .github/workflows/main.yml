@@ -7,7 +7,7 @@ on:
       baseUrl:
         description: 'Maps Api Key'
         required: true
-        default: 'AIzaSyBUezM-zpmz1egGJF5a6RC5Kh3gbgDZbJA'
+        default: 'mapKey'
   push:
     branches:
       - 'main'
